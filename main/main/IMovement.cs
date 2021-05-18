@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace main
 {
-	class ballMovement
+	class IMovement
 	{
+        
 	}
 }

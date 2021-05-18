@@ -6,8 +6,12 @@
         xmlns:local="clr-namespace:main"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid Background="Black">
-		
-        
-    </Grid>
+    
+    <Canvas Name="myCanvas" Background="Black" Focusable="True" KeyDown="KeyIsDown" KeyUp="KeyIsUp">
+
+        <Rectangle Name="player1" Height="90px" Width="20px" Fill="red" Canvas.Left="775"  Canvas.Top="1" Canvas.Bottom= "0"> </Rectangle>
+        <Rectangle Name="player2" Height="95px" Width="12px" Fill="red" Canvas.Left="0"  Canvas.Top="0"></Rectangle>
+
+    </Canvas>
+    
 </Window>

@@ -1,0 +1,15 @@
+C:\Users\haris.dervisevic\Documents\Programmering-slutprojekt\Programmering-slutprojekt\main\main\obj\Debug\MainWindow.g.cs
+C:\Users\haris.dervisevic\Documents\Programmering-slutprojekt\Programmering-slutprojekt\main\main\obj\Debug\App.g.cs
+C:\Users\haris.dervisevic\Documents\Programmering-slutprojekt\Programmering-slutprojekt\main\main\obj\Debug\main_MarkupCompile.cache
+C:\Users\haris.dervisevic\Documents\Programmering-slutprojekt\Programmering-slutprojekt\main\main\obj\Debug\main_MarkupCompile.lref
+C:\Users\haris.dervisevic\Documents\Programmering-slutprojekt\Programmering-slutprojekt\main\main\bin\Debug\main.exe.config
+C:\Users\haris.dervisevic\Documents\Programmering-slutprojekt\Programmering-slutprojekt\main\main\bin\Debug\main.exe
+C:\Users\haris.dervisevic\Documents\Programmering-slutprojekt\Programmering-slutprojekt\main\main\bin\Debug\main.pdb
+C:\Users\haris.dervisevic\Documents\Programmering-slutprojekt\Programmering-slutprojekt\main\main\obj\Debug\main.csprojAssemblyReference.cache
+C:\Users\haris.dervisevic\Documents\Programmering-slutprojekt\Programmering-slutprojekt\main\main\obj\Debug\MainWindow.baml
+C:\Users\haris.dervisevic\Documents\Programmering-slutprojekt\Programmering-slutprojekt\main\main\obj\Debug\main.g.resources
+C:\Users\haris.dervisevic\Documents\Programmering-slutprojekt\Programmering-slutprojekt\main\main\obj\Debug\main.Properties.Resources.resources
+C:\Users\haris.dervisevic\Documents\Programmering-slutprojekt\Programmering-slutprojekt\main\main\obj\Debug\main.csproj.GenerateResource.cache
+C:\Users\haris.dervisevic\Documents\Programmering-slutprojekt\Programmering-slutprojekt\main\main\obj\Debug\main.csproj.CoreCompileInputs.cache
+C:\Users\haris.dervisevic\Documents\Programmering-slutprojekt\Programmering-slutprojekt\main\main\obj\Debug\main.exe
+C:\Users\haris.dervisevic\Documents\Programmering-slutprojekt\Programmering-slutprojekt\main\main\obj\Debug\main.pdb
