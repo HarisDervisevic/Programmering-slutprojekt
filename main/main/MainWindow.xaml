@@ -9,9 +9,9 @@
     
     <Canvas Name="myCanvas" Background="Black" Focusable="True" KeyDown="KeyIsDown" KeyUp="KeyIsUp">
 
-        <Rectangle Name="player1" Height="90px" Width="20px" Fill="red" Canvas.Left="775"  Canvas.Top="1" Canvas.Bottom= "0"> </Rectangle>
-        <Rectangle Name="player2" Height="95px" Width="12px" Fill="red" Canvas.Left="0"  Canvas.Top="0"></Rectangle>
-
+        <Rectangle Name="player1" Height="90px" Width="12px" Fill="red" Canvas.Left="765"  Canvas.Top="1" Canvas.Bottom= "0"> </Rectangle>
+        <Rectangle Name="player2" Height="95px" Width="12px" Fill="red" Canvas.Left="5"  Canvas.Top="0"></Rectangle>
+        <Ellipse Name="gameBall" Height="20px" Width="20px" Fill="red" Canvas.Left="105"  Canvas.Top="0"></Ellipse>
     </Canvas>
     
 </Window>

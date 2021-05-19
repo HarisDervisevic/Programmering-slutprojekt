@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 using System.Windows.Threading;
 
 namespace main
@@ -21,11 +20,14 @@ namespace main
     public partial class MainWindow : Window
     {
 
-        bool goUp;
-        bool goDown;
+        bool goUp1;
+        bool goDown1;
+        bool goUp2;
+        bool goDown2;
         int playerSpeed = 7;
 
-        DispatcherTimer gameTimer = new DispatcherTimer();
+        private DispatcherTimer PlayerMovementTimer = new DispatcherTimer();
+
 
 
         public MainWindow()
@@ -33,12 +35,16 @@ namespace main
         {
             InitializeComponent();
             myCanvas.Focus();
+
+            PlayerMovementTimer.Interval = TimeSpan.FromMilliseconds(30);
+            PlayerMovementTimer.Tick += playerMovement;
+            PlayerMovementTimer.Start();
         }
 
 
-        private void KeyIsDown(object sender, KeyEventArgs e)
+        private void playerMovement(object sender, EventArgs e)
         {
-            if (e.Key == Key.Up)
+            if (goUp1)
             {
                 if (Canvas.GetTop(player1) > 0.0)
                 {
@@ -46,7 +52,7 @@ namespace main
                 }
 
             }
-            if (e.Key == Key.W)
+            if (goUp2)
             {
                 if (Canvas.GetTop(player2) > 0.0)
                 {
@@ -56,7 +62,7 @@ namespace main
 
             }
 
-            if (e.Key == Key.Down)
+            if (goDown1)
             {
                 if (Canvas.GetTop(player1) + player1.Height < myCanvas.ActualHeight)
                 {
@@ -64,7 +70,7 @@ namespace main
                 }
             }
 
-            if (e.Key == Key.S)
+            if (goDown2)
             {
                 if (Canvas.GetTop(player2) + player2.Height < myCanvas.ActualHeight)
                 {
@@ -81,37 +87,70 @@ namespace main
             {
                 case Key.W:
                     {
-                        goUp = true;
-                        goDown = false;
+                        goUp2 = false;
+                        goDown2 = false;
                         break;
                     }
 
                 case Key.S:
                     {
-                        goUp = false;
-                        goDown = true;
+                        goUp2 = false;
+                        goDown2 = false;
                         break;
                     }
 
                 case Key.Up:
                     {
-                        goUp = true;
-                        goDown = false;
+                        goUp1 = false;
+                        goDown1 = false;
                         break;
                     }
 
                 case Key.Down:
                     {
-                        goUp = false;
-                        goDown = true;
+                        goUp1 = false;
+                        goDown1 = false;
                         break;
                     }
-
-
 
             }
 
 
+        }
+
+        private void KeyIsDown(object sender, KeyEventArgs e)
+        {
+
+            switch (e.Key)
+            {
+                case Key.W:
+                    {
+                        goUp2 = true;
+                        goDown2 = false;
+                        break;
+                    }
+
+                case Key.S:
+                    {
+                        goUp2 = false;
+                        goDown2 = true;
+                        break;
+                    }
+
+                case Key.Up:
+                    {
+                        goUp1 = true;
+                        goDown1 = false;
+                        break;
+                    }
+
+                case Key.Down:
+                    {
+                        goUp1 = false;
+                        goDown1 = true;
+                        break;
+                    }
+            }
         }
     }
 
