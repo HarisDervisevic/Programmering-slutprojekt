@@ -24,10 +24,19 @@ namespace main
         bool goDown1;
         bool goUp2;
         bool goDown2;
+
         int playerSpeed = 7;
+
+        int scorePlayer1 = 0;
+        int scorePlayer2 = 0;
+
+        int ballSpeedY = -200;
+        int ballSpeedX = 150;
+
 
         private DispatcherTimer PlayerMovementTimer = new DispatcherTimer();
 
+        private DispatcherTimer ballMovementTimer = new DispatcherTimer();
 
 
         public MainWindow()
@@ -36,11 +45,44 @@ namespace main
             InitializeComponent();
             myCanvas.Focus();
 
+            //Spelarnas rörelser sätts igång
+
             PlayerMovementTimer.Interval = TimeSpan.FromMilliseconds(30);
             PlayerMovementTimer.Tick += playerMovement;
             PlayerMovementTimer.Start();
+
+
+            //Bollens rörelse sätts igång
+            ballMovementTimer.Interval = TimeSpan.FromSeconds(0.005);
+            ballMovementTimer.Tick += ballMovement;
+            ballMovementTimer.Start();
         }
 
+        private void ballMovement(object sender, EventArgs e)
+        {
+            var x = Canvas.GetLeft(gameBall);
+            var y = Canvas.GetTop(gameBall);
+
+
+            //Krockar med toppen och botten av spelet
+
+            if (y <= 0 || y>= myCanvas.ActualHeight - gameBall.Height)
+            {
+                ballSpeedY = -ballSpeedY;
+            }
+
+             
+           
+            x += ballSpeedX * ballMovementTimer.Interval.TotalSeconds;
+            y += ballSpeedY * ballMovementTimer.Interval.TotalSeconds;
+
+            Canvas.SetLeft(gameBall, x);
+            Canvas.SetTop(gameBall, y);
+
+
+        }
+
+        //Vad som ska göras när en knapp blir tryckt, hur spelaren får röra sig med gränser och hastighet
 
         private void playerMovement(object sender, EventArgs e)
         {
@@ -79,6 +121,7 @@ namespace main
             }
 
         }
+        //Känner av när man släpper en knapp 
 
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
@@ -118,6 +161,7 @@ namespace main
 
         }
 
+        //Känner av när man trycker in en knapp
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
 
