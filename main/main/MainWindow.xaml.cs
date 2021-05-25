@@ -45,14 +45,12 @@ namespace main
             InitializeComponent();
             myCanvas.Focus();
 
-            //Spelarnas rörelser sätts igång
 
             PlayerMovementTimer.Interval = TimeSpan.FromMilliseconds(30);
             PlayerMovementTimer.Tick += playerMovement;
             PlayerMovementTimer.Start();
 
 
-            //Bollens rörelse sätts igång
             gameStartTimer.Interval = TimeSpan.FromSeconds(0.005);
             gameStartTimer.Tick += gameStart;
             gameStartTimer.Start();
@@ -66,15 +64,18 @@ namespace main
 
             collisionWithPlayer();
 
+            scoreBoard();
+
         }
 
         private void ballMovement()
         {
+            //läser av vad bollens x och y värde är i spelet
             var x = Canvas.GetLeft(gameBall);
             var y = Canvas.GetTop(gameBall);
 
 
-            //Krockar med toppen och botten av spelet
+            //Ifall bollen y värde är 0 eller höjden av spel planen så är platsen en yta som den ska studsa på
 
             if (y <= 0 || y>= myCanvas.ActualHeight - gameBall.Height)
             {
@@ -88,14 +89,20 @@ namespace main
             Canvas.SetTop(gameBall, y);
 
 
+        }
+
+        private void scoreBoard()
+        {
+            //Om bollens x värde är mindre än ett så har bollen gått ut och poöng ges till andra laget och även att poäng ges till andra spelaren
+            //-ballSpeedX gör så att bollen kommer att gå åt sidan som precis fått poäng
             if (Canvas.GetLeft(gameBall) < 1)
             {
 
                 ballSpeedX = -ballSpeedX;
                 ballPositionReset();
                 scorePlayer1 += 1;
-                player1score.Content = "Red score" + scorePlayer1;
-
+                player1score.Content = "Red score" + " " + scorePlayer1;
+                 
             }
 
             if (Canvas.GetLeft(gameBall) + (gameBall.Width * 1.3) > Application.Current.MainWindow.Width)
@@ -103,7 +110,7 @@ namespace main
                 ballSpeedX = -ballSpeedX;
                 ballPositionReset();
                 scorePlayer2 += 1;
-                player2score.Content = "Blue score" + scorePlayer2;
+                player2score.Content = "Blue score" + " " + scorePlayer2;
             }
 
         }
@@ -114,12 +121,14 @@ namespace main
             var x = Canvas.GetLeft(gameBall);
             var y = Canvas.GetTop(gameBall);
 
+
+            //Definerar spelare ett och två och bollen så att man kan använda intersectsWith metoden för att enklare upptäcka om rektanglarna koliderar med varandra
             Rect playerHitBox1 = new Rect(Canvas.GetLeft(player1), Canvas.GetTop(player1), 12, 90);
             Rect playerHitBox2 = new Rect(Canvas.GetLeft(player2), Canvas.GetTop(player2), 12, 90);
             Rect gameBallHitBox = new Rect(x, y, 20, 20);
 
 
-            //krockar med spelare 1
+            //Om  spelare ett krockar med bollen så ändras hastigheten med minus ursprungliga hastigheten så att x värdet istället minskar
 
             if (playerHitBox1.IntersectsWith(gameBallHitBox))
             {
@@ -137,15 +146,14 @@ namespace main
         }
 
 
-
-
-
+        //När bollen går ut ur mappen så startar den om i mitten och man spelar vidare
         private void ballPositionReset()
         {
-            Canvas.SetTop(gameBall, 200);
+            Canvas.SetTop(gameBall, 100);
             Canvas.SetLeft(gameBall, 400);
 
         }
+
         //Vad som ska göras när en knapp blir tryckt, hur spelaren får röra sig med gränser och hastighet
 
         private void playerMovement(object sender, EventArgs e)

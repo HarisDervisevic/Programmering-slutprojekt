@@ -11,8 +11,8 @@
 
         <Rectangle Name="player1"   Height="90px" Width="12px" Fill="red" Canvas.Left="770"  Canvas.Top="1" Canvas.Bottom= "0"> </Rectangle>
         <Rectangle Name="player2" Height="95px" Width="12px" Fill="blue" Canvas.Left="15"  Canvas.Top="0"></Rectangle>
-        <Rectangle Name="gameBall" Height="20px" Width="20px" Fill="green" Canvas.Left="105"  Canvas.Top="0"></Rectangle>
-        <TextBlock Name="scoreP1"  IsHitTestVisible="False" Text="0" Canvas.Left="580" Height="40px" Width="60px"/>
+        <Rectangle Name="gameBall" Height="20px" Width="20px" Fill="green" Canvas.Left="390"  Canvas.Top="100"></Rectangle>
+
         <Label Name="player1score" Content="Red player score:" Canvas.Left="500" Background="White"></Label>
         <Label Name="player2score" Content="Blue player score:" Canvas.Left="190" Background="White"></Label>
     </Canvas>
