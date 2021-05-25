@@ -31,12 +31,12 @@ namespace main
         int scorePlayer2 = 0;
 
         int ballSpeedY = -200;
-        int ballSpeedX = 150;
+        int ballSpeedX = 450;
 
 
         private DispatcherTimer PlayerMovementTimer = new DispatcherTimer();
 
-        private DispatcherTimer ballMovementTimer = new DispatcherTimer();
+        private DispatcherTimer gameStartTimer = new DispatcherTimer();
 
 
         public MainWindow()
@@ -53,12 +53,22 @@ namespace main
 
 
             //Bollens rörelse sätts igång
-            ballMovementTimer.Interval = TimeSpan.FromSeconds(0.005);
-            ballMovementTimer.Tick += ballMovement;
-            ballMovementTimer.Start();
+            gameStartTimer.Interval = TimeSpan.FromSeconds(0.005);
+            gameStartTimer.Tick += gameStart;
+            gameStartTimer.Start();
+
+            
         }
 
-        private void ballMovement(object sender, EventArgs e)
+        private void gameStart(object sender, EventArgs e)
+        {
+            ballMovement();
+
+            collisionWithPlayer();
+
+        }
+
+        private void ballMovement()
         {
             var x = Canvas.GetLeft(gameBall);
             var y = Canvas.GetTop(gameBall);
@@ -71,17 +81,71 @@ namespace main
                 ballSpeedY = -ballSpeedY;
             }
 
-             
-           
-            x += ballSpeedX * ballMovementTimer.Interval.TotalSeconds;
-            y += ballSpeedY * ballMovementTimer.Interval.TotalSeconds;
+            x += ballSpeedX * gameStartTimer.Interval.TotalSeconds;
+            y += ballSpeedY * gameStartTimer.Interval.TotalSeconds;
 
             Canvas.SetLeft(gameBall, x);
             Canvas.SetTop(gameBall, y);
 
 
+            if (Canvas.GetLeft(gameBall) < 1)
+            {
+
+                ballSpeedX = -ballSpeedX;
+                ballPositionReset();
+                scorePlayer1 += 1;
+                player1score.Content = "Red score" + scorePlayer1;
+
+            }
+
+            if (Canvas.GetLeft(gameBall) + (gameBall.Width * 1.3) > Application.Current.MainWindow.Width)
+            {
+                ballSpeedX = -ballSpeedX;
+                ballPositionReset();
+                scorePlayer2 += 1;
+                player2score.Content = "Blue score" + scorePlayer2;
+            }
+
         }
 
+        private void collisionWithPlayer()
+        {
+
+            var x = Canvas.GetLeft(gameBall);
+            var y = Canvas.GetTop(gameBall);
+
+            Rect playerHitBox1 = new Rect(Canvas.GetLeft(player1), Canvas.GetTop(player1), 12, 90);
+            Rect playerHitBox2 = new Rect(Canvas.GetLeft(player2), Canvas.GetTop(player2), 12, 90);
+            Rect gameBallHitBox = new Rect(x, y, 20, 20);
+
+
+            //krockar med spelare 1
+
+            if (playerHitBox1.IntersectsWith(gameBallHitBox))
+            {
+
+                ballSpeedX = -ballSpeedX;
+            }
+
+            //krockar med spelare 2
+            if (playerHitBox2.IntersectsWith(gameBallHitBox))
+            {
+                ballSpeedX = -ballSpeedX;
+            }
+
+
+        }
+
+
+
+
+
+        private void ballPositionReset()
+        {
+            Canvas.SetTop(gameBall, 200);
+            Canvas.SetLeft(gameBall, 400);
+
+        }
         //Vad som ska göras när en knapp blir tryckt, hur spelaren får röra sig med gränser och hastighet
 
         private void playerMovement(object sender, EventArgs e)
