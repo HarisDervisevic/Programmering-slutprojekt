@@ -11,8 +11,24 @@
 
         <Rectangle Name="player1"   Height="90px" Width="12px" Fill="red" Canvas.Left="770"  Canvas.Top="1" Canvas.Bottom= "0"> </Rectangle>
         <Rectangle Name="player2" Height="95px" Width="12px" Fill="blue" Canvas.Left="15"  Canvas.Top="0"></Rectangle>
-        <Rectangle Name="gameBall" Height="20px" Width="20px" Fill="green" Canvas.Left="390"  Canvas.Top="100"></Rectangle>
-
+        <Rectangle Name="gameBall" Height="20px" Width="20px" Fill="green" Canvas.Left="390"  Canvas.Top="100" RadiusX="100" RadiusY="60"></Rectangle>
+        <Label Canvas.Left="350" Content="FIRST TO 10 POINTS" Canvas.Top="0" Name="PreviousVirtualButton"  Background="White">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="Label.Loaded">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard TargetProperty="Opacity">
+                                        <DoubleAnimation  Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:5" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
         <Label Name="player1score" Content="Red player score:" Canvas.Left="500" Background="White"></Label>
         <Label Name="player2score" Content="Blue player score:" Canvas.Left="190" Background="White"></Label>
     </Canvas>

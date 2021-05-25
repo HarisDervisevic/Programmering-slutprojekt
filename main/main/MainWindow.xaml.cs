@@ -66,6 +66,8 @@ namespace main
 
             scoreBoard();
 
+            gameEnd();
+
         }
 
         private void ballMovement()
@@ -112,6 +114,8 @@ namespace main
                 scorePlayer2 += 1;
                 player2score.Content = "Blue score" + " " + scorePlayer2;
             }
+
+
 
         }
 
@@ -268,6 +272,15 @@ namespace main
                     }
             }
         }
+
+        private void gameEnd()
+        {
+            if(scorePlayer1 == 10 || scorePlayer2 == 10)
+            {
+                Environment.Exit(-1);
+            }
+        }
+
     }
 
 }
